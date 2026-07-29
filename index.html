@@ -2,16 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>iamYoshi's Bio Page</title>
-    
     <style>
       body {
         margin: 0;
         background: #000;
         font-family: Arial, sans-serif;
+        color: #fff;
       }
 
       .video-player {
@@ -22,8 +20,7 @@
       .video-player video {
         display: block;
         width: 100%;
-        height: auto;
-        max-height: 100vh;
+        height: 100vh;
         object-fit: cover;
         background: #000;
       }
@@ -36,35 +33,115 @@
         opacity: 0;
         pointer-events: none;
       }
+
+      .entry-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.9);
+        cursor: pointer;
+      }
+
+      .entry-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+      }
+
+      .entry-card {
+        border: 3px solid #fff;
+        padding: 28px 24px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.04);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+        max-width: 320px;
+        width: calc(100% - 32px);
+      }
+
+      .entry-card img {
+        display: block;
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        margin: 0 auto 16px;
+        border: 2px solid #fff;
+      }
+
+      .entry-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 8px 0 10px;
+        letter-spacing: 1px;
+      }
+
+      .entry-subtitle {
+        font-size: 14px;
+        margin: 6px 0;
+        color: #ddd;
+      }
+
+      .avatar-circle {
+        width: 72px;
+        height: 72px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 16px auto 8px;
+        font-weight: 700;
+        font-size: 16px;
+      }
+
+      .track-line {
+        font-size: 13px;
+        color: #f2f2f2;
+        margin-top: 8px;
+      }
     </style>
   </head>
 
   <body>
-    
+    <div class="entry-screen" id="entry-screen">
+      <div class="entry-card">
+        <div class="entry-title">Click to enter</div>
+        <img src="media/image/icon.jpeg" alt="iamYoshi image">
+        <div class="avatar-circle">iamyoshi</div>
+        <div class="entry-subtitle">Current playing</div>
+        <div class="track-line">Close_Eyes_KLICKAUD.mp3</div>
+      </div>
+    </div>
+
     <div class="video-player">
-    
-      <video autoplay muted playsinline loop>
-    
+      <video id="bg-video" muted playsinline loop preload="none">
         <source src="media/video/squueze-benz-drift.mp4" type="video/mp4">
-    
         <source src="media/video/squueze-benz-drift.webm" type="video/webm">
         Your browser does not support the video tag.
       </video>
     </div>
 
     <div class="audio-player">
-      <audio id="bg-audio" controls autoplay loop preload="auto" src="media/music/Close_Eyes_KLICKAUD.mp3"></audio>
+      <audio id="bg-audio" controls loop preload="none" src="media/music/Close_Eyes_KLICKAUD.mp3"></audio>
     </div>
 
     <script>
+      const entryScreen = document.getElementById('entry-screen');
       const audio = document.getElementById('bg-audio');
-      audio.play().catch(() => {});
+      const video = document.getElementById('bg-video');
 
-      document.addEventListener('pointerdown', () => {
+      const startMedia = () => {
+        entryScreen.classList.add('hidden');
+        audio.load();
+        video.load();
         audio.play().catch(() => {});
-      }, { once: true });
+        video.play().catch(() => {});
+      };
+
+      entryScreen.addEventListener('click', startMedia, { once: true });
+      entryScreen.addEventListener('touchstart', startMedia, { once: true });
     </script>
-
   </body>
-
 </html>
