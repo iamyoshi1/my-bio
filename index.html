@@ -1,40 +1,56 @@
 <!DOCTYPE HTML>
 <html lang="en">
-  
   <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-sca;e=1.0">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>iamYoshi's Bio Page</title>
+    
+    <style>
+      body {
+        margin: 0;
+        background: #000;
+        font-family: Arial, sans-serif;
+      }
 
+      .video-player {
+        width: 100%;
+        overflow: hidden;
+      }
 
+      .video-player video {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 100vh;
+        object-fit: cover;
+        background: #000;
+      }
+
+      .audio-player {
+        display: none;
+      }
+    </style>
   </head>
-  
+
   <body>
     
-  <div class="video-player">
-
+    <div class="video-player">
     
-    <video controls width="100%" max-width="640>
-      
-      <source src="media/video/squueze-benz-drift.mp4" type="video/mp4">
-
-      <source src="media/video/squueze-benz-drift.webm" type="video/webm">
-
+      <video autoplay muted playsinline loop>
+    
+        <source src="media/video/squueze-benz-drift.mp4" type="video/mp4">
+    
+        <source src="media/video/squueze-benz-drift.webm" type="video/webm">
+        Your browser does not support the video tag.
       </video>
+    </div>
 
-  </div>
+    <div class="audio-player">
+      <audio controls src="media/music/Close_Eyes_KLICKAUD.mp3"></audio>
+    </div>
 
-<div class="audio-player">
-    
-    <audio controls autoplay src="media/music/Close_Eyes_KLICKAUD.mp3">
-
-    </audio>
-  
-</div>
-      
   </body>
-      
-
+  
 </html>
