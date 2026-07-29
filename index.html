@@ -29,7 +29,12 @@
       }
 
       .audio-player {
-        display: none;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
       }
     </style>
   </head>
@@ -48,9 +53,18 @@
     </div>
 
     <div class="audio-player">
-      <audio controls src="media/music/Close_Eyes_KLICKAUD.mp3"></audio>
+      <audio id="bg-audio" controls autoplay loop preload="auto" src="media/music/Close_Eyes_KLICKAUD.mp3"></audio>
     </div>
 
+    <script>
+      const audio = document.getElementById('bg-audio');
+      audio.play().catch(() => {});
+
+      document.addEventListener('pointerdown', () => {
+        audio.play().catch(() => {});
+      }, { once: true });
+    </script>
+
   </body>
-  
+
 </html>
