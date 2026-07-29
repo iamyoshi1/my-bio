@@ -101,6 +101,15 @@
         color: #f2f2f2;
         margin-top: 8px;
       }
+
+      .profile-preview {
+        margin-top: 18px;
+        display: none;
+      }
+
+      .entry-screen.entered .profile-preview {
+        display: block;
+      }
     </style>
   </head>
 
@@ -109,9 +118,11 @@
       <div class="entry-card">
         <div class="entry-title">Click to enter</div>
         <img src="media/image/icon.jpeg" alt="iamYoshi image">
-        <div class="avatar-circle">iamyoshi</div>
-        <div class="entry-subtitle">Current playing</div>
-        <div class="track-line">Close_Eyes_KLICKAUD.mp3</div>
+        <div class="profile-preview">
+          <div class="avatar-circle">iamyoshi</div>
+          <div class="entry-subtitle">Current playing</div>
+          <div class="track-line">Close_Eyes_KLICKAUD.mp3</div>
+        </div>
       </div>
     </div>
 
@@ -133,6 +144,7 @@
       const video = document.getElementById('bg-video');
 
       const startMedia = () => {
+        entryScreen.classList.add('entered');
         entryScreen.classList.add('hidden');
         audio.load();
         video.load();
